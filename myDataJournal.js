@@ -53,6 +53,22 @@ const journalAnalyzer = {
     return Object.keys(counts).reduce((a,b) => counts[a] > counts[b] ? a : b);
   },
     
+  /**
+  * We Compare the days with high caffeine intake (2 + cups) against focus level.
+  * Our logic says that the average of the focus score for high-caffeine days,
+  * if 7 or above should be checked. This returns a string and gives a simple 
+  * conclusion on caffeine effectiveness.
+  */
+  correlateCaffeineToFocus() {
+    const highCaffeineDays = this.data.filter( d => d.caffeineIntake > = 2);
+    if (highCaffeineDays.length === 0) return "Not enough data on caffeine usage.";
+
+    const avgFocus = highCaffeineDays.reduce((s,d) => s + d.focusLevel, )) / highCaffeineDays.length;
+    return avgFocus > = 7 ? "Yes, caffeine helps!" : " Nope, focus drops with caffeine.";
+  }
+};
+
+    
   
   
   
