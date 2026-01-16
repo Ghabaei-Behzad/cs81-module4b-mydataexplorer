@@ -42,6 +42,18 @@ const journalAnalyzer = {
     let total = this.data.reduce((sum, entry) => sum + entry.sleepHours, 0);
     return (total / this.data.length).toFixed(1);
   },
+  /**
+  * Identifies the most frequently occuring mood string in the journal data
+  * returns a string. The mood name that appears most often.
+  * Find the key with the highest value in the counts object.
+  */
+  mostFrequentMood() {
+    const counts = {};
+    this.data.forEach(entry => counts[entry.mood] = (counts[entry.mood] || 0) + 1);
+    return Object.keys(counts).reduce((a,b) => counts[a] > counts[b] ? a : b);
+  },
+    
+  
   
   
     
