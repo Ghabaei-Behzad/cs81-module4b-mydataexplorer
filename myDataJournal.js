@@ -77,7 +77,7 @@ console.log(`Analyzing Behzad's Data Journal...`);
 console.log(`Most screen time: ${journalAnalyzer.findHighestScreenTime()}`);
 console.log(`Average sleep: ${journalAnalyzer.averageSleep()} hrs`);
 console.log(`Most frequent mood: "${journalAnalyzer.mostFrequentMood()}"`);
-console.log(`Does more caffeine mean better focus? → ${journalAnalyzer.correlateCaffeineToFocus()}`);
+console.log(`Does more caffeine mean better focus?  ${journalAnalyzer.correlateCaffeineToFocus()}`);
 
   
   
