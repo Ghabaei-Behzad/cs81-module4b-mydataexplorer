@@ -73,7 +73,7 @@ const journalAnalyzer = {
 // we are ready for logging the output.
 
 // Execution
-console.log(`Analyzing My Data Journal...`);
+console.log(`Analyzing Behzad's Data Journal...`);
 console.log(`Most screen time: ${journalAnalyzer.findHighestScreenTime()}`);
 console.log(`Average sleep: ${journalAnalyzer.averageSleep()} hrs`);
 console.log(`Most frequent mood: "${journalAnalyzer.mostFrequentMood()}"`);
