@@ -21,3 +21,20 @@ const weekData = [
   { day: "Saturday", sleepHours: 9, screenTime: 3, mood: "relaxed", caffeineIntake: 0, focusLevel: 4 },
   { day: "Sunday", sleepHours: 8, screenTime: 8, mood: "lazy", caffeineIntake: 0, focusLevel: 3 }
   ];
+const journalAnalyzer = {
+  data: weekData,
+  /**
+  * Iterations through the weekly data to find the entry with the highest screen time.
+  * returns string describing the day and the number of hours
+  */
+  findHighestScreenTime() {
+    let maxEntry = this.data[0];
+    for(let entry of this.data) {
+      if (entry.screenTime > maxEntry.screenTime) maxEntry = entry;
+    }
+    return `${maxEntry.day} (${maxEntry.screenTime} hrs)`;
+  },
+  
+  
+    
+  
