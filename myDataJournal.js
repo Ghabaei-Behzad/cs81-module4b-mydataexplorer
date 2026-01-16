@@ -34,6 +34,14 @@ const journalAnalyzer = {
     }
     return `${maxEntry.day} (${maxEntry.screenTime} hrs)`;
   },
+  /**
+  * Calculate the mean average of sleep hours across all recorded days.
+  * returns a string, the average sleep rounded to one decimal place.
+  */
+  averageSleep() {
+    let total = this.data.reduce((sum, entry) => sum + entry.sleepHours, 0);
+    return (total / this.data.length).toFixed(1);
+  },
   
   
     
