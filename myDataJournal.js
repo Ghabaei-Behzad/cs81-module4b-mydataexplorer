@@ -68,7 +68,14 @@ const journalAnalyzer = {
   }
 };
 
-    
+// Printing the result and execution.
+// we are ready for logging the output.
+console.log(`Analyzing Behzad's Data Journal...`);
+console.log(`Most screen time: ${journalAnalyzer.findHighestScreenTime()}`);
+console.log(`Average sleep: ${journalAnalyzer.averageSleep()} hrs`);
+console.log(`Most frequent mood: "${journalAnalyzer.mostfrequentMood()}"`);
+console.log(`Does more caffeine mean better focus? -> ${journalAnalyzer.correlateToCaffeineFocus()}`);
+
   
   
   
