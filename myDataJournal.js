@@ -13,45 +13,47 @@
 //Make an Array of Objects
 
 const weekData = [
-  { day: "Monday", sleepHours: 7, screenTime: 5, mood: "tired", caffeineIntake: 2, focusLevel: 6 },
-  { day: "Tuesday", sleepHours: 8, sreenTime: 4, mood: "productive", caffeineIntake: 1, focusLevel: 9 },
-  { day: "Wednesday", sleepHours: 6, screenTime: 7, mood: "stressed", caffeineIntake: 3, focusLevel: 5 },
-  { day: "Thursday", sleepHours: 7.5, screenTime: 4.5, mood: "productive", caffeineIntake: 1, focusLevel: 8 },
-  { day: "Friday", sleepHours: 6.5, screenTime: 6, mood: "excited", caffeineIntake: 2, focusLevel: 7 },
-  { day: "Saturday", sleepHours: 9, screenTime: 3, mood: "relaxed", caffeineIntake: 0, focusLevel: 4 },
-  { day: "Sunday", sleepHours: 8, screenTime: 8, mood: "lazy", caffeineIntake: 0, focusLevel: 3 }
-  ];
+    { day: "Monday", sleepHours: 7, screenTime: 5, mood: "tired", caffeineIntake: 2, focusLevel: 6 },
+    { day: "Tuesday", sleepHours: 8, screenTime: 4, mood: "productive", caffeineIntake: 1, focusLevel: 9 },
+    { day: "Wednesday", sleepHours: 6, screenTime: 7, mood: "stressed", caffeineIntake: 3, focusLevel: 5 },
+    { day: "Thursday", sleepHours: 7.5, screenTime: 4.5, mood: "productive", caffeineIntake: 1, focusLevel: 8 },
+    { day: "Friday", sleepHours: 6.5, screenTime: 6, mood: "excited", caffeineIntake: 2, focusLevel: 7 },
+    { day: "Saturday", sleepHours: 9, screenTime: 3, mood: "relaxed", caffeineIntake: 0, focusLevel: 4 },
+    { day: "Sunday", sleepHours: 8, screenTime: 8, mood: "lazy", caffeineIntake: 0, focusLevel: 3 }
+];
 const journalAnalyzer = {
-  data: weekData,
+    data: weekData,
+
   /**
   * Iterations through the weekly data to find the entry with the highest screen time.
   * returns string describing the day and the number of hours
   */
-  findHighestScreenTime() {
-    let maxEntry = this.data[0];
-    for(let entry of this.data) {
-      if (entry.screenTime > maxEntry.screenTime) maxEntry = entry;
-    }
-    return `${maxEntry.day} (${maxEntry.screenTime} hrs)`;
-  },
+ findHighestScreenTime() {
+        let maxEntry = this.data[0];
+        for (let entry of this.data) {
+            if (entry.screenTime > maxEntry.screenTime) maxEntry = entry;
+        }
+        return `${maxEntry.day} (${maxEntry.screenTime} hrs)`;
+    },
   /**
   * Calculate the mean average of sleep hours across all recorded days.
   * returns a string, the average sleep rounded to one decimal place.
   */
   averageSleep() {
-    let total = this.data.reduce((sum, entry) => sum + entry.sleepHours, 0);
-    return (total / this.data.length).toFixed(1);
-  },
+        let total = this.data.reduce((sum, entry) => sum + entry.sleepHours, 0);
+        return (total / this.data.length).toFixed(1);
+    },
   /**
   * Identifies the most frequently occuring mood string in the journal data
   * returns a string. The mood name that appears most often.
   * Find the key with the highest value in the counts object.
   */
-  mostFrequentMood() {
-    const counts = {};
-    this.data.forEach(entry => counts[entry.mood] = (counts[entry.mood] || 0) + 1);
-    return Object.keys(counts).reduce((a,b) => counts[a] > counts[b] ? a : b);
-  },
+   mostFrequentMood() {
+        const counts = {};
+        this.data.forEach(entry => counts[entry.mood] = (counts[entry.mood] || 0) + 1);
+        return Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+    },
+
     
   /**
   * We Compare the days with high caffeine intake (2 + cups) against focus level.
@@ -60,21 +62,22 @@ const journalAnalyzer = {
   * conclusion on caffeine effectiveness.
   */
   correlateCaffeineToFocus() {
-    const highCaffeineDays = this.data.filter( d => d.caffeineIntake > = 2);
-    if (highCaffeineDays.length === 0) return "Not enough data on caffeine usage.";
-
-    const avgFocus = highCaffeineDays.reduce((s,d) => s + d.focusLevel, )) / highCaffeineDays.length;
-    return avgFocus > = 7 ? "Yes, caffeine helps!" : " Nope, focus drops with caffeine.";
-  }
+        // Checking if high caffeine (2+ cups) matches high focus (7+)
+        const highCaffeine = this.data.filter(d => d.caffeineIntake >= 2);
+        const avgFocus = highCaffeine.reduce((s, d) => s + d.focusLevel, 0) / highCaffeine.length;
+        return avgFocus > 7 ? "Yes, caffeine helps!" : "Nope, focus drops with caffeine.";
+    }
 };
 
 // Printing the result and execution.
 // we are ready for logging the output.
-console.log(`Analyzing Behzad's Data Journal...`);
+
+// Execution
+console.log(`Analyzing My Data Journal...`);
 console.log(`Most screen time: ${journalAnalyzer.findHighestScreenTime()}`);
 console.log(`Average sleep: ${journalAnalyzer.averageSleep()} hrs`);
-console.log(`Most frequent mood: "${journalAnalyzer.mostfrequentMood()}"`);
-console.log(`Does more caffeine mean better focus? -> ${journalAnalyzer.correlateToCaffeineFocus()}`);
+console.log(`Most frequent mood: "${journalAnalyzer.mostFrequentMood()}"`);
+console.log(`Does more caffeine mean better focus? → ${journalAnalyzer.correlateCaffeineToFocus()}`);
 
   
   
